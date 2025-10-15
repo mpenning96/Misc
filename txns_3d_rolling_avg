@@ -1,0 +1,15 @@
+--3d rolling average of transaction amound for trnasactions dataset 
+--M.penning 10-15-2025
+
+with temptable as (
+select 
+	day_date, 
+    avg(txn_amt_day) over (order by day_date rows between 2 preceding and current row) as avg_txn_3d 
+from 
+	(select
+    	cast(transaction_time as date) as day_date,
+        sum(transaction_amount) as txn_amt_day
+    from transactions 
+    group by day_date) as T1
+)
+select avg_txn_3d from temptable where day_date = '2021-01-31'
