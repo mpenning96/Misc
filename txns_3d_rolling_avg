@@ -1,4 +1,4 @@
---3d rolling average of transaction amound for trnasactions dataset 
+--3d rolling average of transaction amount for transactions dataset 
 --M.penning 10-15-2025
 
 with temptable as (
